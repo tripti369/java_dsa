@@ -1,0 +1,23 @@
+class Solution {
+    public int dominantIndex(int[] nums) {
+        int max1 = -1;
+        int max2 = -1;
+        int maxIndex = -1;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] > max1) {
+                // Current largest becomes the second largest
+                max2 = max1; 
+                // Update largest and its index
+                max1 = nums[i];
+                maxIndex = i;
+            } else if (nums[i] > max2) {
+                // Update second largest if it's smaller than current element
+                max2 = nums[i];
+            }
+        }
+
+        // Check if the largest is at least twice the second largest
+        return (max1 >= 2 * max2) ? maxIndex : -1;
+    }
+}
